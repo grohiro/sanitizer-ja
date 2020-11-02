@@ -2,12 +2,33 @@
 namespace Grohiro\Sanitizer;
 
 use PHPUnit\Framework\TestCase;
+use Carbon\Carbon;
 
 class TypeConvertTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
+    }
+
+    public function testDate()
+    {
+        $t = new TypeConvert();
+
+        $c = $t->date('2020-01-01');
+        $this->assertNotNull($c);
+        $this->assertTrue($c instanceof Carbon);
+    }
+
+    public function testInvalidDate()
+    {
+        $t = new TypeConvert();
+
+        $c = $t->date('invalid-date');
+        $this->assertNull($c);
+
+        $c = $t->date('2020-12-32');
+        $this->assertNull($c);
     }
 
     public function testStrBoolean()

@@ -13,7 +13,12 @@ class TypeConvert
      */
     public function date($string)
     {
-        return Carbon::parse($string);
+        try {
+            return Carbon::parse($string);
+        } catch (\Carbon\Exceptions\InvalidFormatException $ex) {
+            // ignore
+        }
+        return null;
     }
 
     /**
