@@ -26,6 +26,7 @@ class SanitizerJaServiceProvider extends ServiceProvider
 
         $filters = [
             'date',
+            'boolean',
         ];
 
         $typeConvert = new TypeConvert();
